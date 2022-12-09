@@ -10,6 +10,16 @@ pipeline {
     }
     stages {
         stage('Build') {
+          when {
+            anyOf {
+              allOf {
+                expression { env.GIT_BRANCH == 'main' }
+                triggeredBy 'TimerTrigger'
+              }
+              triggeredBy 'UserIdCause'
+              triggeredBy 'SCMTrigger'
+            }
+          }
           steps {
             sh 'env'
           }
