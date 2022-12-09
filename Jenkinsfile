@@ -14,20 +14,20 @@ pipeline {
           sh 'uname'
         }
       }
-        stage('Build') {
-          when {
-            anyOf {
-              allOf {
-                expression { env.GIT_BRANCH == 'main' }
-                triggeredBy 'TimerTrigger'
-              }
-              triggeredBy 'UserIdCause'
-              triggeredBy 'SCMTrigger'
-            }
-          }
-          steps {
-            sh 'env'
-          }
+      stage('Build') {
+        // when {
+        //  anyOf {
+        //    allOf {
+        //      expression { env.GIT_BRANCH == 'main' }
+        //      triggeredBy 'TimerTrigger'
+        //    }
+        //    triggeredBy 'UserIdCause'
+        //    triggeredBy 'SCMTrigger'
+        //  }
+        // }
+        steps {
+          sh 'env'
         }
+      }
     }
 }
