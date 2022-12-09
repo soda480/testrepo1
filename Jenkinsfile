@@ -15,16 +15,16 @@ pipeline {
         }
       }
       stage('Build') {
-        // when {
-        //  anyOf {
-        //    allOf {
-        //      expression { env.GIT_BRANCH == 'main' }
-        //      triggeredBy 'TimerTrigger'
-        //    }
-        //    triggeredBy 'UserIdCause'
-        //    triggeredBy 'SCMTrigger'
-        //  }
-        // }
+         when {
+          anyOf {
+            allOf {
+              expression { env.GIT_BRANCH == 'main' }
+              triggeredBy 'TimerTrigger'
+            }
+            triggeredBy 'UserIdCause'
+            triggeredBy 'BranchIndexingCause'
+          }
+         }
         steps {
           sh 'env'
         }
