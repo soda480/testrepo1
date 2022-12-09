@@ -9,6 +9,11 @@ pipeline {
         cron('TZ=US/Arizona\nH * * * *')
     }
     stages {
+      stage('Prep') {
+        steps {
+          sh 'uname'
+        }
+      }
         stage('Build') {
           when {
             anyOf {
