@@ -14,7 +14,7 @@ pipeline {
           sh 'sleep 60'
         }
       }
-      stage('Build') {
+      stage('Code Scan Pipeline') {
          when {
           anyOf {
             allOf {
@@ -25,8 +25,34 @@ pipeline {
             triggeredBy 'BranchIndexingCause'
           }
          }
+        stages {
+          stage('Build Docker Images') {
+            steps {
+              echo 'Build Docker Image'
+              sh 'sleep 10'
+            }
+          }
+          stage('Prep Code Scan') {
+            steps {
+              echo 'Prep Code Scan'
+              sh 'sleep 10'
+            }
+          }
+          stage('Code Scan') {
+            steps {
+              echo 'Code Scan'
+              sh 'sleep 10'
+            }
+          }
+        }
+      }
+      stage('Publish') {
+        when {
+          expression { env.GIT_BRANCH ==~ /^(?:test.*)$/}
+        }
         steps {
-          sh 'sleep 600'
+          echo 'Publish'
+          sh 'sleep 10'
         }
       }
     }
