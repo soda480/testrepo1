@@ -11,6 +11,7 @@ pipeline {
     stages {
       stage('Prep') {
         steps {
+          sh 'env'
           sh 'sleep 60'
         }
       }
