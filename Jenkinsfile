@@ -11,7 +11,7 @@ pipeline {
     stages {
       stage('Prep') {
         steps {
-          sh 'uname'
+          sh 'sleep 60'
         }
       }
       stage('Build') {
@@ -26,7 +26,7 @@ pipeline {
           }
          }
         steps {
-          sh 'env'
+          sh 'sleep 600'
         }
       }
     }
